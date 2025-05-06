@@ -1,5 +1,4 @@
-﻿
-namespace Ejercicio05.Consola
+﻿namespace Ejercicio05B.Consola
 {
     internal class Program
     {
@@ -8,7 +7,7 @@ namespace Ejercicio05.Consola
             Console.WriteLine("Calcular Distancia entre Puntos");
             try
             {
-                
+
                 Console.Write("Ingrese la coord X. del primer punto:");
                 int X1 = int.Parse(Console.ReadLine());
                 Console.Write("Ingrese la coord Y. del primer punto:");
@@ -18,22 +17,11 @@ namespace Ejercicio05.Consola
                 int X2 = int.Parse(Console.ReadLine());
                 Console.Write("Ingrese la coord Y. del segundo punto:");
                 int Y2 = int.Parse(Console.ReadLine());
-                if(X1!=X2 || Y1 != Y2)//|| es la O
+                if(!SonIguales(X1,Y1, X2, Y2))
                 {
                     double distancia = CalcularDistanciaEntrePuntos(X1, Y1, X2, Y2);
                     Console.WriteLine($"La distancia entre ({X1},{Y1}) y ({X2},{Y2}) es {distancia}");
-                    if (X1 == X2)
-                    {
-                        Console.WriteLine("Ambos puntos conforman una recta perpendicular al eje X");
-                    }
-                    else if (Y1 == Y2)
-                    {
-                        Console.WriteLine("Ambos puntos conforman una recta horizontal");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Ambos puntos conforman una recta oblicua");
-                    }
+                    Console.WriteLine($"Ambos puntos conforman una recta {TipoRecta(X1,Y1,X2,Y2)}");
 
 
                 }
@@ -53,7 +41,31 @@ namespace Ejercicio05.Consola
 
         private static double CalcularDistanciaEntrePuntos(int x1, int y1, int x2, int y2)
         {
-            return Math.Sqrt(Math.Pow((x2-x1),2)+Math.Pow((y2-y1),2));
+            return Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2));
+        }
+
+        private static bool SonIguales(int x1, int y1, int x2, int y2)
+        {
+            //if (x1==x2 && y1==y2)
+            //{
+            //    return true;
+            //}
+            //return false;
+            return (x1==x2 && y1==y2);
+        }
+        private static string TipoRecta(int x1, int y1, int x2, int y2)
+        {
+            if (x1 == x2)
+            {
+                return "perpendicular";
+            }else if (y1 == y2)
+            {
+                return "horizontal";
+            }
+            else
+            {
+                return "oblicua";
+            }
         }
     }
 }
